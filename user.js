@@ -282,12 +282,12 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   
-    // Atualiza o carrinho e o DOM antes de chamar as funções de toggle
+    
     atualizarCarrinho();
     salvarCarrinhoNoLocalStorage();
     resetProdutinhos();
   
-    // Chama as funções de toggle após a atualização
+    
     favMobile.innerHTML = carrinhoItens.innerHTML;
     toggleMenu();
     toggleMobile();
@@ -302,12 +302,12 @@ document.addEventListener("DOMContentLoaded", function () {
       item.quantidade++;
     }
   
-    // Atualiza o carrinho e o DOM antes de chamar as funções de toggle
+  
     atualizarCarrinho();
     salvarCarrinhoNoLocalStorage();
     resetProdutinhos();
   
-    // Chama as funções de toggle após a atualização
+   
     favMobile.innerHTML = carrinhoItens.innerHTML;
     toggleMenu();
     toggleMobile();
