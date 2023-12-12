@@ -246,6 +246,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Exiba o carrinho na versão mobile, se necessário
       carrinhoMobile.style.display = "block";
+    //   atualizarCarrinho()
+   
     }
   }
 
@@ -265,43 +267,53 @@ document.addEventListener("DOMContentLoaded", function () {
 
   window.removeCarrinho = function (nome) {
     const index = carrinhoItens.findIndex((item) => item.nome === nome);
-
+  
     if (index !== -1) {
       const item = carrinhoItens[index];
       item.quantidade--;
-
+  
       if (item.quantidade === 0) {
         const liToRemove = document.querySelector(`#li-${item.nome}`);
         if (liToRemove) {
           liToRemove.remove();
         }
-
+  
         carrinhoItens.splice(index, 1);
       }
     }
+  
+    // Atualiza o carrinho e o DOM antes de chamar as funções de toggle
+    atualizarCarrinho();
+    salvarCarrinhoNoLocalStorage();
+    resetProdutinhos();
+  
+    // Chama as funções de toggle após a atualização
     favMobile.innerHTML = carrinhoItens.innerHTML;
     toggleMenu();
     toggleMobile();
     toggleFav();
-    atualizarCarrinho();
-    salvarCarrinhoNoLocalStorage();
-    resetProdutinhos();
   };
+  
 
   window.addMaisUm = function (nome) {
     const item = carrinhoItens.find((item) => item.nome === nome);
-
+  
     if (item) {
       item.quantidade++;
     }
+  
+    // Atualiza o carrinho e o DOM antes de chamar as funções de toggle
+    atualizarCarrinho();
+    salvarCarrinhoNoLocalStorage();
+    resetProdutinhos();
+  
+    // Chama as funções de toggle após a atualização
     favMobile.innerHTML = carrinhoItens.innerHTML;
     toggleMenu();
     toggleMobile();
     toggleFav();
-    atualizarCarrinho();
-    salvarCarrinhoNoLocalStorage();
-    resetProdutinhos();
   };
+  
 
   function resetProdutinhos() {
     const produtinhosBtns = document.querySelectorAll(".produtinhos");
